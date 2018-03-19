@@ -30,7 +30,7 @@ public class Ticket {
 	
 	private PriorityEnum priority;
 	
-	@DBRef(lazy = true)  // Aqui informamos que o campo é chave estrangeira
+	@DBRef(lazy = true)  // Aqui informamos que o campo é chave extrangeira
 	private User assignedUser;
 	
 	private String description;
