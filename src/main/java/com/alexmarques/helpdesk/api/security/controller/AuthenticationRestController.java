@@ -80,7 +80,7 @@ public class AuthenticationRestController {
 		final User user = userService.findByEmail(username);
 		
 		if(jwtTokenUtil.canTokenBeRefreshed(token)) {
-			String refreshedToken = jwtTokenUtil.refreshedToken(token);
+			String refreshedToken = jwtTokenUtil.refreshToken(token);
 			return ResponseEntity.ok(new CurrentUser(refreshedToken,user));
 		} else {
 			return ResponseEntity.badRequest().body(null);

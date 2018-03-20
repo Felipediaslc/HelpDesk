@@ -28,6 +28,8 @@ public class JwtTokenUtil implements Serializable{
 	@Value("${jwt.expiration}")
 	private Long expiration;
 	
+	
+	// Pega o e-mail de dentro do token
 	public String getUserNameFromToken(String token) {
 		String username;
 		
@@ -35,12 +37,13 @@ public class JwtTokenUtil implements Serializable{
 			final Claims claims = getClaimsFromToken(token);
 			username = claims.getSubject();
 			
-		}catch(Exception e) {
+		} catch (Exception e) {
 			username = null;
 		}
 		return username;
 	}
 	
+	// Pega data de expiração do token
 	public Date getExpirationDateFromToken(String token) {
 		Date expiration;
 		try {
@@ -100,12 +103,13 @@ public class JwtTokenUtil implements Serializable{
 		
 	}
 	
-	public String refreshedToken(String token) {
-		String refreshedToken = null;
+	public String refreshToken(String token) {
+		String refreshedToken;
 		
 		try {
 			final Claims claims = getClaimsFromToken(token);
 			claims.put(CLAIM_KEY_CREATED, new Date());
+			refreshedToken = doGenerateToken(claims); // Faltava a atualização do token :)
 		} catch (Exception e) {
 			refreshedToken = null;
 		}
@@ -119,7 +123,6 @@ public class JwtTokenUtil implements Serializable{
 		return (
 				username.equals(user.getUsername())
 						&& !isTokenExpired(token));
-		
 	}
 	
 }
