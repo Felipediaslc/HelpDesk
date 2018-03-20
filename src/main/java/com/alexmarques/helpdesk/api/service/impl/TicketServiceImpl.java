@@ -12,8 +12,6 @@ import com.alexmarques.helpdesk.api.repository.ChangeStatusRepository;
 import com.alexmarques.helpdesk.api.repository.TicketRepository;
 import com.alexmarques.helpdesk.api.service.TicketService;
 
-
-
 @Service
 public class TicketServiceImpl implements TicketService {
 
@@ -25,19 +23,16 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Ticket createOrUpdate(Ticket ticket) {
-		// TODO Auto-generated method stub
 		return this.ticketRepository.save(ticket);
 	}
 
 	@Override
 	public Ticket findById(String id) {
-		// TODO Auto-generated method stub
 		return this.ticketRepository.findOne(id);
 	}
 
 	@Override
 	public void delete(String id) {
-		// TODO Auto-generated method stub
 		this.ticketRepository.delete(id);
 	}
 
@@ -65,34 +60,33 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Page<Ticket> findByParameters(int page, int count, String title, String status, String priority) {
-		// TODO Auto-generated method stub
-		return null;
+		Pageable pages = new PageRequest(page, count);
+		return this.ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityOrderByDateDesc(title, status, priority, pages);
 	}
 
 	@Override
 	public Page<Ticket> findByParametersAndCurrentUser(int page, int count, String title, String status,
 			String priority, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Pageable pages = new PageRequest(page, count);
+		return this.ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityAndUserIdOrderByDateDesc(title, status, priority, pages);
 	}
 
 	@Override
 	public Page<Ticket> findByNumber(int page, int count, Integer number) {
-		// TODO Auto-generated method stub
-		return null;
+		Pageable pages = new PageRequest(page, count);
+		return this.ticketRepository.findByNumber( number, pages);
 	}
 
 	@Override
 	public Iterable<Ticket> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.ticketRepository.findAll();
 	}
 
 	@Override
 	public Page<Ticket> findByParameterAndAssignedUser(int page, int count, String title, String status,
 			String priority, String assignedUser) {
-		// TODO Auto-generated method stub
-		return null;
+		Pageable pages = new PageRequest(page, count);
+		return this.ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityAndAssignedUserIdOrderByDateDesc(title, status, priority, pages);
 	}
 	
 
