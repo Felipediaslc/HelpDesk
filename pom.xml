@@ -19,6 +19,12 @@
 	</parent>
 
 	<properties>
+	        <sonar.projectKey>HelpDesk</sonar.projectKey>
+		<sonar.host.url>http://ip172-18-0-7-bunhou1qckh0008nircg-9000.direct.labs.play-with-docker.com</sonar.host.url>
+		<sonar.login>4063dc81d522ddd356ecd100e784b642f100ad57</sonar.login>	
+		<sonar.language>java</sonar.language>	
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.java.binaries>target/classes</sonar.java.binaries>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
